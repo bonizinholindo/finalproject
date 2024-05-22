@@ -41,7 +41,7 @@ file.close()
    #    print()
     #   with open(nome+".txt", "r", encoding="utf-8") as arquivo:
      #      print(arquivo.read())
-#def procurar():
+def procurar():
     nome = input("Que palavra voce deseja procurar ")
     print(f"Arquivo {nome}.txt" "foi aberto com sucesso")
     print()
