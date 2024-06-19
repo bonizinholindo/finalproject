@@ -3,7 +3,7 @@ import time
 import random
 from tkinter import *
 from tkinter.ttk import *
-
+from tkinter import messagebox
 
 tela1= Tk()
 tela1.title("Minijogos")
@@ -131,56 +131,70 @@ vermelho = '#cc1616'
 
 
 
-#JOGO DO GALO
-
-
-def exibir_tabuleiro(tabuleiro):
-    for linha in tabuleiro:
-        print(" | ".join(linha))
-        print("-" * 5)
-
-def verificar_vitoria(tabuleiro, jogador):
-    # Verificar linhas, colunas e diagonais
-    for linha in tabuleiro:
-        if all([celula == jogador for celula in linha]):
-            return True
-    for coluna in range(3):
-        if all([tabuleiro[linha][coluna] == jogador for linha in range(3)]):
-            return True
-    if all([tabuleiro[i][i] == jogador for i in range(3)]) or all([tabuleiro[i][2-i] == jogador for i in range(3)]):
-        return True
-    return False
-
-def jogo_da_velha():
-    photo = PhotoImage(file=r"transferir.png")
-    bt2 = Button(tela1, text="Jogo Da Velha", command=jogo_da_velha(), image=photo).pack(side=RIGHT)
-
-    tabuleiro = [[" " for _ in range(3)] for _ in range(3)]
-
-    jogador = "X"
-
-    for _ in range(9):
-        exibir_tabuleiro(tabuleiro)
-        linha, coluna = map(int, input(f'Jogador {jogador}, escolha linha e coluna (0, 1 ou 2): ').split())
-        if tabuleiro[linha][coluna] == " ":
-            tabuleiro[linha][coluna] = jogador
-            if verificar_vitoria(tabuleiro, jogador):
-                exibir_tabuleiro(tabuleiro)
-                print(f'Jogador {jogador} venceu!')
-                return
-            jogador = "O" if jogador == "X" else "X"
-        else:
-            print("Celula ocupada, tente novamente.")
-
-    exibir_tabuleiro(tabuleiro)
-    print("Empate!")
+#Par ou Impar
 
 
 
+import tkinter as tk
+from tkinter import messagebox
+import random
 
+def play_game():
+    user_choice = choice.get()
+    user_number = number_entry.get()
 
+    if user_choice not in ["Par", "Ímpar"]:
+        messagebox.showwarning("Erro", "Por favor, escolha Par ou Ímpar.")
+        return
 
+    try:
+        user_number = int(user_number)
+    except ValueError:
+        messagebox.showwarning("Erro", "Por favor, insira um número válido.")
+        return
 
+    computer_number = random.randint(0, 10)
+    total = user_number + computer_number
+
+    result = "Par" if total % 2 == 0 else "Ímpar"
+    result_message = f"Você escolheu: {user_choice}\nSeu número: {user_number}\nNúmero do computador: {computer_number}\nTotal: {total} ({result})"
+
+    if result == user_choice:
+        result_message += "\n\nVocê venceu!"
+    else:
+        result_message += "\n\nVocê perdeu!"
+
+    messagebox.showinfo("Resultado", result_message)
+
+# Configuração da interface Tkinter
+root = tk.Tk()
+root.title("Jogo Par ou Ímpar")
+
+# Label para escolher Par ou Ímpar
+choice_label = tk.Label(root, text="Escolha Par ou Ímpar:", font=('Helvetica', 14))
+choice_label.pack(pady=10)
+
+# Botões para escolher Par ou Ímpar
+choice = tk.StringVar()
+par_button = tk.Radiobutton(root, text="Par", variable=choice, value="Par", font=('Helvetica', 14))
+par_button.pack(pady=5)
+impar_button = tk.Radiobutton(root, text="Ímpar", variable=choice, value="Ímpar", font=('Helvetica', 14))
+impar_button.pack(pady=5)
+
+# Label para inserir um número
+number_label = tk.Label(root, text="Insira um número:", font=('Helvetica', 14))
+number_label.pack(pady=10)
+
+# Entrada para inserir um número
+number_entry = tk.Entry(root, font=('Helvetica', 14))
+number_entry.pack(pady=10)
+
+# Botão para jogar
+play_button = tk.Button(root, text="Jogar", command=play_game, font=('Helvetica', 14))
+play_button.pack(pady=20)
+
+# Executa a interface Tkinter
+root.mainloop()
 
 
 
