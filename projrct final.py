@@ -1,4 +1,4 @@
-
+import tkinter as tk
 import time
 import random
 from tkinter import *
@@ -7,9 +7,12 @@ from tkinter import messagebox
 
 tela1= Tk()
 tela1.title("Minijogos")
-tela1.geometry("380x500+500+100")
+tela1.geometry("500x500+500+100")
 tela1.wm_resizable(width=False , height=False  )
+vermelho = '#cc1616'
 
+lb1 = Label(tela1, text= "MiniGames", font = "Times 18 bold")
+lb1.place(width = 200 , height = 200 , x =205 , y =10 )
 
 
 
@@ -17,7 +20,7 @@ def blackjack():
     tela1.destroy()
     tela2 = Tk()
     tela2.title("Blackjack")
-    tela2.geometry("380x500+500+100")
+    tela2.geometry("550x400+200+200")
     tela2.wm_resizable(width=False, height=False)
     vermelho = '#cc1616'
 
@@ -53,6 +56,7 @@ def comprar():
         global pt_cpu
         global lb_soma
         global lb_carta
+
         cartas = random.randint(2, 10)
         lb_carta.configure(text=cartas)
         somatorio += cartas
@@ -66,24 +70,26 @@ def comprar():
             lb_resultado.configure(text='Você perdeu')
 
 def novo():
-        global b_jogar
-        global b_passar
-        global somatorio
-        global pt_player
-        global pt_cpu
+    global b_jogar
+    global b_passar
+    global somatorio
+    global pt_player
+    global pt_cpu
 
-        somatorio = 0
 
-        lb_resultado.configure(text='Em jogo ..')
-        lb_soma.configure(text=' ')
-        lb_carta.configure(text=' ')
-        lb_banca.configure(text=' ')
+    somatorio = 0
 
-        b_jogar = Button(tela1, text='Comprar', command=comprar, font=('Times 20 bold'))
-        b_jogar.place(width=150, height=50, x=100, y=200)
 
-        b_passar = Button(tela1, text='Deitar', command=passar, font=('Times 20 bold'))
-        b_passar.place(width=150, height=50, x=100, y=275)
+    lb_resultado.configure(text='Em jogo ..')
+    lb_soma.configure(text=' ')
+    lb_carta.configure(text=' ')
+    lb_banca.configure(text=' ')
+
+    b_jogar = Button(tela1, text='Comprar', command=comprar, font=('Times 20 bold'))
+    b_jogar.place(width=150, height=50, x=100, y=200)
+
+    b_passar = Button(tela1, text='Deitar', command=passar, font=('Times 20 bold'))
+    b_passar.place(width=150, height=50, x=100, y=275)
 
 
 
@@ -119,97 +125,53 @@ def passar():
 
 lbl1 = Label(tela1, text='Minijogos', font="Times 12 ")
 bt1 = Button(tela1, text='blackjack', command=blackjack)
-bt1.place(width=80 , height=30 , x=230 , y= 140)
+bt1.place(width=150 , height=50 , x=350 , y= 350)
 #botões
 
 
 # cor
-vermelho = '#cc1616'
-# cor
-
-#funços
-
-
-
-#Par ou Impar
-
-
-
-import tkinter as tk
-from tkinter import messagebox
-import random
-
-def play_game():
-    user_choice = choice.get()
-    user_number = number_entry.get()
-
-    if user_choice not in ["Par", "Ímpar"]:
-        messagebox.showwarning("Erro", "Por favor, escolha Par ou Ímpar.")
-        return
-
-    try:
-        user_number = int(user_number)
-    except ValueError:
-        messagebox.showwarning("Erro", "Por favor, insira um número válido.")
-        return
-
-    computer_number = random.randint(0, 10)
-    total = user_number + computer_number
-
-    result = "Par" if total % 2 == 0 else "Ímpar"
-    result_message = f"Você escolheu: {user_choice}\nSeu número: {user_number}\nNúmero do computador: {computer_number}\nTotal: {total} ({result})"
-
-    if result == user_choice:
-        result_message += "\n\nVocê venceu!"
-    else:
-        result_message += "\n\nVocê perdeu!"
-
-    messagebox.showinfo("Resultado", result_message)
-
-# Configuração da interface Tkinter
-root = tk.Tk()
-root.title("Jogo Par ou Ímpar")
-
-# Label para escolher Par ou Ímpar
-choice_label = tk.Label(root, text="Escolha Par ou Ímpar:", font=('Helvetica', 14))
-choice_label.pack(pady=10)
-
-# Botões para escolher Par ou Ímpar
-choice = tk.StringVar()
-par_button = tk.Radiobutton(root, text="Par", variable=choice, value="Par", font=('Helvetica', 14))
-par_button.pack(pady=5)
-impar_button = tk.Radiobutton(root, text="Ímpar", variable=choice, value="Ímpar", font=('Helvetica', 14))
-impar_button.pack(pady=5)
-
-# Label para inserir um número
-number_label = tk.Label(root, text="Insira um número:", font=('Helvetica', 14))
-number_label.pack(pady=10)
-
-# Entrada para inserir um número
-number_entry = tk.Entry(root, font=('Helvetica', 14))
-number_entry.pack(pady=10)
-
-# Botão para jogar
-play_button = tk.Button(root, text="Jogar", command=play_game, font=('Helvetica', 14))
-play_button.pack(pady=20)
-
-# Executa a interface Tkinter
-root.mainloop()
 
 
 
 
 
+def PedraPapelouTesoura( ):
+    tela1.destroy()
+    tela3 = tk.Tk()
+    tela3.title("PedraPapelouTesoura")
+    tela3.geometry("550x400+200+200")
+    tela3.wm_resizable(width=False, height=False)
+    vermelho = '#cc1616'
+
+    pedra = tk.Button(tela3, text="Pedra", width=20, command=lambda: jogar("Pedra"))
+    papel = tk.Button(tela3, text="Papel", width=20, command=lambda: jogar("Papel"))
+    tesoura = tk.Button(tela3, text="Tesoura", width=20, command=lambda: jogar("Tesoura"))
+
+    # Posicionando os botões na janela
+    pedra.pack(pady=10)
+    papel.pack(pady=10)
+    tesoura.pack(pady=10)
 
 
+def determinar_vencedor(jogador, computador):
+        if jogador == computador:
+            return "Empate"
+        elif (jogador == "Pedra" and computador == "Tesoura") or \
+                (jogador == "Papel" and computador == "Pedra") or \
+                (jogador == "Tesoura" and computador == "Papel"):
+            return "Você venceu!"
+        else:
+            return "Computador venceu!"
 
+    # Função para o clique do botão
+def jogar(escolha_jogador):
+     escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
+     resultado = determinar_vencedor(escolha_jogador, escolha_computador)
+     messagebox.showinfo("Resultado",
+                            f"Você escolheu: {escolha_jogador}\nComputador escolheu: {escolha_computador}\n\n{resultado}")
 
-
-
-
-
-
-
+bt2 = Button(tela1, text='PedraPapelouTesoura', command=PedraPapelouTesoura)
+bt2.place(width=150 , height=50 , x=350 , y= 350)
 
 
 
