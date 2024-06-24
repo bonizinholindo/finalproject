@@ -171,10 +171,43 @@ def jogar(escolha_jogador):
                             f"Você escolheu: {escolha_jogador}\nComputador escolheu: {escolha_computador}\n\n{resultado}")
 
 bt2 = Button(tela1, text='PedraPapelouTesoura', command=PedraPapelouTesoura)
-bt2.place(width=150 , height=50 , x=350 , y= 350)
+bt2.place(width=150 , height=50 , x=100 , y= 350)
 
 
 
+
+def jogar():
+    escolha_usuario = escolha_var.get()
+    numero_usuario = int(entrada_numero.get())
+
+    numero_computador = random.randint(1, 10)
+    soma = numero_usuario + numero_computador
+
+    resultado = "Par" if soma % 2 == 0 else "Ímpar"
+
+    if (escolha_usuario == "Par" and resultado == "Par") or (escolha_usuario == "Ímpar" and resultado == "Ímpar"):
+        mensagem = f"Você escolheu {escolha_usuario}.\nNúmero do usuário: {numero_usuario}\nNúmero do computador: {numero_computador}\nSoma: {soma} ({resultado})\nVocê ganhou!"
+    else:
+        mensagem = f"Você escolheu {escolha_usuario}.\nNúmero do usuário: {numero_usuario}\nNúmero do computador: {numero_computador}\nSoma: {soma} ({resultado})\nVocê perdeu!"
+
+    messagebox.showinfo("Resultado", mensagem)
+
+# Configuração da janela principal
+root = tk.Tk()
+root.title("Jogo Par ou Ímpar")
+
+# Rótulo e campo de entrada para o número do usuário
+tk.Label(root, text="Digite um número (1-10):").pack(pady=10)
+entrada_numero = tk.Entry(root)
+entrada_numero.pack(pady=10)
+
+# Opções de escolha (Par ou Ímpar)
+escolha_var = tk.StringVar(value="Par")
+tk.Radiobutton(root, text="Par", variable=escolha_var, value="Par").pack(pady=5)
+tk.Radiobutton(root, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
+
+# Botão para jogar
+tk.Button(root, text="Jogar", command=jogar).pack(pady=20)
 
 
 
