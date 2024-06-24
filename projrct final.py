@@ -176,7 +176,38 @@ bt2.place(width=150 , height=50 , x=100 , y= 350)
 
 
 
+
+
+
+
+
+def ParouImpar():
+    tela4 = tk.Tk()
+    tela4.title("Jogo Par ou Ímpar")
+    tela1.destroy()
+    tela4.geometry("550x400+200+200")
+    tela4.wm_resizable(width=False, height=False)
+
+
+
+
+    # Rótulo e campo de entrada para o número do usuário
+    tk.Label(tela4, text="Digite um número (1-10):").pack(pady=10)
+    entrada_numero = tk.Entry(tela4)
+    entrada_numero.pack(pady=10)
+
+    # Opções de escolha (Par ou Ímpar)
+    escolha_var = tk.StringVar(value="Par")
+    tk.Radiobutton(tela4, text="Par", variable=escolha_var, value="Par").pack(pady=5)
+    tk.Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
+
+    # Botão para jogar
+    tk.Button(tela4, text="Jogar", command=jogar).pack(pady=20)
+
+
 def jogar():
+    global escolha_var
+    global entrada_numero
     escolha_usuario = escolha_var.get()
     numero_usuario = int(entrada_numero.get())
 
@@ -192,22 +223,9 @@ def jogar():
 
     messagebox.showinfo("Resultado", mensagem)
 
-# Configuração da janela principal
-root = tk.Tk()
-root.title("Jogo Par ou Ímpar")
+bt3 = Button(tela1, text='ParouImpar', command=ParouImpar)
+bt3.place(width=150 , height=50 , x=25 , y= 350)
 
-# Rótulo e campo de entrada para o número do usuário
-tk.Label(root, text="Digite um número (1-10):").pack(pady=10)
-entrada_numero = tk.Entry(root)
-entrada_numero.pack(pady=10)
-
-# Opções de escolha (Par ou Ímpar)
-escolha_var = tk.StringVar(value="Par")
-tk.Radiobutton(root, text="Par", variable=escolha_var, value="Par").pack(pady=5)
-tk.Radiobutton(root, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
-
-# Botão para jogar
-tk.Button(root, text="Jogar", command=jogar).pack(pady=20)
 
 
 
