@@ -131,47 +131,46 @@ bt1.place(width=150 , height=50 , x=350 , y= 350)
 
 # cor
 
+#PEDRAPAPELOUTESOURA
+def determinar_vencedor(jogador, computador):
+    if jogador == computador:
+        return "Empate"
+    elif (jogador == "Pedra" and computador == "Tesoura") or \
+            (jogador == "Papel" and computador == "Pedra") or \
+            (jogador == "Tesoura" and computador == "Papel"):
+        return "Você venceu!"
+    else:
+        return "Computador venceu!"
 
 
+# Função para o clique do botão
+def jogar(escolha_jogador):
+    escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
+    resultado = determinar_vencedor(escolha_jogador, escolha_computador)
+    messagebox.showinfo("Resultado",
+                        f"Você escolheu: {escolha_jogador}\nComputador escolheu: {escolha_computador}\n\n{resultado}")
 
 
-def PedraPapelouTesoura( ):
+def PedraPapelouTesoura():
     tela1.destroy()
     tela3 = tk.Tk()
     tela3.title("PedraPapelouTesoura")
     tela3.geometry("550x400+200+200")
     tela3.wm_resizable(width=False, height=False)
-    vermelho = '#cc1616'
 
-    pedra = tk.Button(tela3, text="Pedra", width=20, command=lambda: jogar("Pedra"))
-    papel = tk.Button(tela3, text="Papel", width=20, command=lambda: jogar("Papel"))
-    tesoura = tk.Button(tela3, text="Tesoura", width=20, command=lambda: jogar("Tesoura"))
 
-    # Posicionando os botões na janela
+    pedra = Button(tela3, text="Pedra", width=20, command=lambda: jogar("Pedra"))
+    papel = Button(tela3, text="Papel", width=20, command=lambda: jogar("Papel"))
+    tesoura = Button(tela3, text="Tesoura", width=20, command=lambda: jogar("Tesoura"))
+
+
     pedra.pack(pady=10)
     papel.pack(pady=10)
     tesoura.pack(pady=10)
 
-
-def determinar_vencedor(jogador, computador):
-        if jogador == computador:
-            return "Empate"
-        elif (jogador == "Pedra" and computador == "Tesoura") or \
-                (jogador == "Papel" and computador == "Pedra") or \
-                (jogador == "Tesoura" and computador == "Papel"):
-            return "Você venceu!"
-        else:
-            return "Computador venceu!"
-
-    # Função para o clique do botão
-def jogar(escolha_jogador):
-     escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
-     resultado = determinar_vencedor(escolha_jogador, escolha_computador)
-     messagebox.showinfo("Resultado",
-                            f"Você escolheu: {escolha_jogador}\nComputador escolheu: {escolha_computador}\n\n{resultado}")
-
 bt2 = Button(tela1, text='PedraPapelouTesoura', command=PedraPapelouTesoura)
-bt2.place(width=150 , height=50 , x=100 , y= 350)
+bt2.place(width=150 , height=50 , x=200 , y= 350)
+#botões
 
 
 
@@ -179,40 +178,23 @@ bt2.place(width=150 , height=50 , x=100 , y= 350)
 
 
 
-
-
-
-    #tela1.destroy()
-    #tela4 = tk.Tk()
-    #tela4.title("Jogo Par ou Ímpar")
-    #tela4.geometry("550x400+200+200")
-    #tela4.wm_resizable(width=False, height=False)
-
-
-
-
-    # Rótulo e campo de entrada para o número do usuário
-
-    # Opções de escolha (Par ou Ímpar)
-    #escolha_var = tk.StringVar(value="Par")
-    #bt1 = Radiobutton(tela4, text="Par", variable=escolha_var, value="Par").pack(pady = 5)
-    #bt2 =Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
-
-    #lb1 = Label(tela4, text="Digite um número (1-10):")
-    #lb1.place(width = 40 , height = 40, x=100 , y = 140)
-    #entrada_numero = tk.Entry(tela4)
-    #entrada_numero.pack(pady=10)
-
-    #tk.Button(tela4, text="Jogar", command=jogar).pack(pady=20)
+#PAROUIMPAR
 
 
 def jogar():
     global escolha_var
     global entrada_numero
 
-    escolha_usuario = escolha_var.get()
-    numero_usuario = int(entrada_numero.get())
 
+    numero_usuario = int(entrada_numero.get())
+    escolha_usuario = escolha_var.get()
+    try:
+        numero_usuario = int(entrada_numero.get())
+        if numero_usuario < 1 or numero_usuario > 10:
+            raise ValueError("Número fora do intervalo permitido.")
+    except ValueError as ve:
+        messagebox.showerror("Erro", str(ve))
+        return
     numero_computador = random.randint(1, 10)
     soma = numero_usuario + numero_computador
 
@@ -236,7 +218,7 @@ def ParouImpar():
     global escolha_var
     global entrada_numero
 
-  
+
 
     lbl = tk.Label(tela4, text="Digite um número (1-10):")
     lbl.place(x=100, y=40, width=150, height=30)
