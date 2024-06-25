@@ -181,33 +181,35 @@ bt2.place(width=150 , height=50 , x=100 , y= 350)
 
 
 
-def ParouImpar():
-    tela4 = tk.Tk()
-    tela4.title("Jogo Par ou Ímpar")
-    tela1.destroy()
-    tela4.geometry("550x400+200+200")
-    tela4.wm_resizable(width=False, height=False)
+
+    #tela1.destroy()
+    #tela4 = tk.Tk()
+    #tela4.title("Jogo Par ou Ímpar")
+    #tela4.geometry("550x400+200+200")
+    #tela4.wm_resizable(width=False, height=False)
 
 
 
 
     # Rótulo e campo de entrada para o número do usuário
-    tk.Label(tela4, text="Digite um número (1-10):").pack(pady=10)
-    entrada_numero = tk.Entry(tela4)
-    entrada_numero.pack(pady=10)
 
     # Opções de escolha (Par ou Ímpar)
-    escolha_var = tk.StringVar(value="Par")
-    tk.Radiobutton(tela4, text="Par", variable=escolha_var, value="Par").pack(pady=5)
-    tk.Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
+    #escolha_var = tk.StringVar(value="Par")
+    #bt1 = Radiobutton(tela4, text="Par", variable=escolha_var, value="Par").pack(pady = 5)
+    #bt2 =Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar").pack(pady=5)
 
-    # Botão para jogar
-    tk.Button(tela4, text="Jogar", command=jogar).pack(pady=20)
+    #lb1 = Label(tela4, text="Digite um número (1-10):")
+    #lb1.place(width = 40 , height = 40, x=100 , y = 140)
+    #entrada_numero = tk.Entry(tela4)
+    #entrada_numero.pack(pady=10)
+
+    #tk.Button(tela4, text="Jogar", command=jogar).pack(pady=20)
 
 
 def jogar():
     global escolha_var
     global entrada_numero
+
     escolha_usuario = escolha_var.get()
     numero_usuario = int(entrada_numero.get())
 
@@ -223,34 +225,41 @@ def jogar():
 
     messagebox.showinfo("Resultado", mensagem)
 
+
+def ParouImpar():
+    tela1.destroy()
+    tela4 = tk.Tk()
+    tela4.title("Jogo Par ou Ímpar")
+    tela4.geometry("550x400+200+200")
+    tela4.wm_resizable(width=False, height=False)
+
+    global escolha_var
+    global entrada_numero
+
+  
+
+    lbl = tk.Label(tela4, text="Digite um número (1-10):")
+    lbl.place(x=100, y=40, width=150, height=30)
+    entrada_numero = tk.Entry(tela4)
+    entrada_numero.place(x=100, y=80, width=150, height=30)
+
+    escolha_var = tk.StringVar(value="Par")
+    rb_par = tk.Radiobutton(tela4, text="Par", variable=escolha_var, value="Par")
+    rb_par.place(x=100, y=120)
+    rb_impar = tk.Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar")
+    rb_impar.place(x=160, y=120)
+
+
+    btn_jogar = tk.Button(tela4, text="Jogar", command=jogar)
+    btn_jogar.place(x=100, y=160, width=150, height=30)
+
+
+
+
+
+
 bt3 = Button(tela1, text='ParouImpar', command=ParouImpar)
 bt3.place(width=150 , height=50 , x=25 , y= 350)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
