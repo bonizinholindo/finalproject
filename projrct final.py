@@ -14,7 +14,21 @@ vermelho = '#cc1616'
 lb1 = Label(tela1, text= "MiniGames", font = "Times 18 bold")
 lb1.place(width = 200 , height = 200 , x =205 , y =10 )
 
+img = tk.PhotoImage(file="")
 
+lbl_img = tk.Label(tela1, image=img)
+lbl_img.place(x=300, y=40, width=150, height=150)
+
+
+img = tk.PhotoImage(file="")
+
+lbl_img = tk.Label(tela1, image=img)
+lbl_img.place(x=300, y=40, width=150, height=150)
+
+img = tk.PhotoImage(file="")
+
+lbl_img = tk.Label(tela1, image=img)
+lbl_img.place(x=300, y=40, width=150, height=150)
 
 def blackjack():
     tela1.destroy()
@@ -24,7 +38,8 @@ def blackjack():
     tela2.wm_resizable(width=False, height=False)
     vermelho = '#cc1616'
 
-
+    pt_player = 0
+    pt_cpu = 0
 
     lb_scorep = Label(tela2, text='Score Player:', font='Times 18 bold')
     lb_scorep.place(width=140, height=40, x=5, y=5)
@@ -79,7 +94,6 @@ def novo():
 
     somatorio = 0
 
-
     lb_resultado.configure(text='Em jogo ..')
     lb_soma.configure(text=' ')
     lb_carta.configure(text=' ')
@@ -123,9 +137,13 @@ def passar():
     b_novo = Button(tela1, text='Novo', command=novo)
     b_novo.place(width=75, height=40, x=450, y=350)
 
+
+
+
+
 lbl1 = Label(tela1, text='Minijogos', font="Times 12 ")
 bt1 = Button(tela1, text='blackjack', command=blackjack)
-bt1.place(width=150 , height=50 , x=350 , y= 350)
+bt1.place(width=150 , height=50 , x=325 , y= 350)
 #botões
 
 
@@ -160,16 +178,34 @@ def PedraPapelouTesoura():
 
 
     pedra = Button(tela3, text="Pedra", width=20, command=lambda: jogar("Pedra"))
+    pedra.place(x= 50 , y = 275)
     papel = Button(tela3, text="Papel", width=20, command=lambda: jogar("Papel"))
+    papel.place( x = 200 , y = 275)
     tesoura = Button(tela3, text="Tesoura", width=20, command=lambda: jogar("Tesoura"))
+    tesoura.place( x= 350 , y = 275)
 
 
-    pedra.pack(pady=10)
-    papel.pack(pady=10)
-    tesoura.pack(pady=10)
+
+
+
+
+    img = PhotoImage(file="")
+
+    lbl_img = tk.Label(tela3, image=img)
+    lbl_img.place( x= 350 , y = 275, width=150, height=150)
+
+    img = tk.PhotoImage(file="")
+
+    lbl_img = Label(tela3, image=img)
+    lbl_img.place( x = 200 , y = 275, width=150, height=150)
+
+    img = tk.PhotoImage(file="")
+
+    lbl_img = tk.Label(tela3, image=img)
+    lbl_img.place(x= 50 , y = 275, width=150, height=150)
 
 bt2 = Button(tela1, text='PedraPapelouTesoura', command=PedraPapelouTesoura)
-bt2.place(width=150 , height=50 , x=200 , y= 350)
+bt2.place(width=150 , height=50 , x=175 , y= 350)
 #botões
 
 
@@ -219,21 +255,20 @@ def ParouImpar():
     global entrada_numero
 
 
-
     lbl = tk.Label(tela4, text="Digite um número (1-10):")
-    lbl.place(x=100, y=40, width=150, height=30)
+    lbl.place(x=200, y=100, width=150, height=30)
     entrada_numero = tk.Entry(tela4)
-    entrada_numero.place(x=100, y=80, width=150, height=30)
+    entrada_numero.place(x=200, y=150, width=150, height=30)
 
     escolha_var = tk.StringVar(value="Par")
     rb_par = tk.Radiobutton(tela4, text="Par", variable=escolha_var, value="Par")
-    rb_par.place(x=100, y=120)
+    rb_par.place(x=200, y=200)
     rb_impar = tk.Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar")
-    rb_impar.place(x=160, y=120)
+    rb_impar.place(x=275, y=200)
 
 
     btn_jogar = tk.Button(tela4, text="Jogar", command=jogar)
-    btn_jogar.place(x=100, y=160, width=150, height=30)
+    btn_jogar.place(x=200, y=240, width=150, height=30)
 
 
 
