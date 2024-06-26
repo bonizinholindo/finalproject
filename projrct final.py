@@ -135,7 +135,7 @@ def passar():
         lb_cassino.configure(text=pt_cpu)
         lb_resultado.configure(text='Perdeu!')
 
-    vermelho = '#cc1616'
+
 
     b_novo = Button(tela1, text='Novo', command=novo)
     b_novo.place(width=75, height=40, x=450, y=350)
@@ -145,7 +145,7 @@ def passar():
 
 
 lbl1 = Label(tela1, text='Minijogos', font="Times 12 ")
-bt1 = Button(tela1, text='blackjack', command=blackjack)
+bt1 = Button(tela1, text='Blackjack', command=blackjack)
 bt1.place(width=150 , height=50 , x=325 , y= 350)
 #botões
 
@@ -187,7 +187,7 @@ def jogarPapel():
 def PedraPapelouTesoura():
     tela1.destroy()
     tela3 = tk.Tk()
-    tela3.title("PedraPapelouTesoura")
+    tela3.title("Pedra Papel ou Tesoura")
     tela3.geometry("550x400+200+200")
     tela3.wm_resizable(width=False, height=False)
     lbl2 = Label(tela3 , text= "Pedra Papel ou Tesoura", font = "Times 18 bold")
@@ -219,7 +219,7 @@ def PedraPapelouTesoura():
     lbl_img2 = tk.Label(tela3, image=img)
     lbl_img2.place(x= 50 , y = 90, width=150, height=150)
 
-bt2 = Button(tela1, text='PedraPapelouTesoura', command=PedraPapelouTesoura)
+bt2 = Button(tela1, text='Pedra Papel ou Tesoura', command=PedraPapelouTesoura)
 bt2.place(width=150 , height=50 , x=175 , y= 350)
 #botões
 
@@ -291,7 +291,7 @@ def ParouImpar():
 
 
 
-bt3 = Button(tela1, text='ParouImpar', command=ParouImpar)
+bt3 = Button(tela1, text='Par ou Impar', command=ParouImpar)
 bt3.place(width=150 , height=50 , x=25 , y= 350)
 
 
