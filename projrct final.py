@@ -1,5 +1,4 @@
 import tkinter as tk
-import time
 import random
 from tkinter import *
 from tkinter.ttk import *
@@ -11,26 +10,21 @@ tela1.geometry("500x500+500+100")
 tela1.wm_resizable(width=False , height=False  )
 vermelho = '#cc1616'
 
-lb1 = Label(tela1, text= "MiniGames", font = "Times 18 bold")
-lb1.place(width = 200 , height = 200 , x =205 , y =10 )
+lb1 = Label(tela1, text= "MiniGames", font = "Times 18 bold", foreground =vermelho )
+lb1.place(width = 500 , height = 200 , x =195 , y =10 )
 
-img = tk.PhotoImage(file="tesoura (1).png")
-
-lbl_img = tk.Label(tela1, image=img)
-lbl_img.place(x=200, y=300, width=150, height=150)
-
-
-img = tk.PhotoImage(file="blavkjack.png")
-
-lbl_img = tk.Label(tela1, image=img)
-lbl_img.place(x=350, y=200, width=150, height=150)
-
-img = tk.PhotoImage(file="R.png")
-
-lbl_img = tk.Label(tela1, image=img)
-lbl_img.place(x=25, y=250, width=150, height=150)
 
 def blackjack():
+
+    global lb_resultado
+    global lb_soma
+    global lb_carta
+    global lb_banca
+    global tela2
+    global pt_cpu
+    global pt_player
+    global lb_cassino
+    global lb_player
     tela1.destroy()
     tela2 = Tk()
     tela2.title("Blackjack")
@@ -44,23 +38,23 @@ def blackjack():
     lb_scorep = Label(tela2, text='Score Player:', font='Times 18 bold')
     lb_scorep.place(width=140, height=40, x=5, y=5)
     lb_player = Label(tela2, text='0', font=('Times 18 bold'))
-    lb_player.place(width=20, height=40, x=150, y=5)
+    lb_player.place(width=20, height=40, x=150, y=7)
 
     lb_scorec = Label(tela2, text='Score Cassino:', font=('Times 18 bold'))
     lb_scorec.place(width=150, height=40, x=360, y=5)
     lb_cassino = Label(tela2, text='0', font=('Times 18 bold'))
-    lb_cassino.place(width=20, height=40, x=520, y=5)
+    lb_cassino.place(width=70, height=70, x=520, y=5)
     lb_resultado = Label(tela2, text='Iniciar jogo', font=('Times 24'))
     lb_resultado.place(width=200, height=100, x=300, y=200)
 
-    lb_soma = Label(tela2, font=('Times 40 bold'))
-    lb_soma.place(width=50, height=50, x=150, y=90)
+    lb_soma = Label(tela2, font=('Times 40 bold'), foreground= vermelho)
+    lb_soma.place(width=70, height=70, x=150, y=90)
 
     lb_carta = Label(tela2, font=('Times 24'))
-    lb_carta.place(width=50, height=50, x=35, y=200)
+    lb_carta.place(width=70, height=70, x=35, y=200)
 
     lb_banca = Label(tela2, font=('Times 40 bold'))
-    lb_banca.place(width=50, height=50, x=380, y=90)
+    lb_banca.place(width=70, height=70, x=380, y=90)
     b_novo = Button(tela2, text='Novo', command=novo)
     b_novo.place(width=75, height=40, x=450, y=350)
 
@@ -71,6 +65,11 @@ def comprar():
         global pt_cpu
         global lb_soma
         global lb_carta
+        global lb_resultado
+        global lb_banca
+        global pt_player
+        global lb_cassino
+        global lb_player
 
         cartas = random.randint(2, 10)
         lb_carta.configure(text=cartas)
@@ -90,7 +89,11 @@ def novo():
     global somatorio
     global pt_player
     global pt_cpu
-
+    global lb_resultado
+    global lb_carta
+    global tela2
+    global lb_cassino
+    global lb_player
 
     somatorio = 0
 
@@ -99,10 +102,10 @@ def novo():
     lb_carta.configure(text=' ')
     lb_banca.configure(text=' ')
 
-    b_jogar = Button(tela1, text='Comprar', command=comprar, font=('Times 20 bold'))
+    b_jogar = Button(tela2, text='Comprar', command=comprar)
     b_jogar.place(width=150, height=50, x=100, y=200)
 
-    b_passar = Button(tela1, text='Deitar', command=passar, font=('Times 20 bold'))
+    b_passar = Button(tela2, text='Deitar', command=passar)
     b_passar.place(width=150, height=50, x=100, y=275)
 
 
@@ -162,11 +165,23 @@ def determinar_vencedor(jogador, computador):
 
 
 # Função para o clique do botão
-def jogar(escolha_jogador):
+def jogarTesoura():
+
     escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
-    resultado = determinar_vencedor(escolha_jogador, escolha_computador)
+    resultado = determinar_vencedor("Tesoura", escolha_computador)
     messagebox.showinfo("Resultado",
-                        f"Você escolheu: {escolha_jogador}\nComputador escolheu: {escolha_computador}\n\n{resultado}")
+                        f"Você escolheu: Tesoura \nComputador escolheu: {escolha_computador}\n\n{resultado}")
+def jogarPedra():
+    escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
+    resultado = determinar_vencedor("Pedra", escolha_computador)
+    messagebox.showinfo("Resultado",
+                        f" \n Você escolheu: Pedra \nComputador escolheu: {escolha_computador}\n\n{resultado}")
+
+def jogarPapel():
+    escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
+    resultado = determinar_vencedor("Papel", escolha_computador)
+    messagebox.showinfo("Resultado",
+                        f"Você escolheu: Papel \nComputador escolheu: {escolha_computador}\n\n{resultado}")
 
 
 def PedraPapelouTesoura():
@@ -177,11 +192,11 @@ def PedraPapelouTesoura():
     tela3.wm_resizable(width=False, height=False)
     lbl2 = Label(tela3 , text= "Pedra Papel ou Tesoura", font = "Times 18 bold")
     lbl2.place(width = 400 , height = 50 , x = 150 , y = 50)
-    pedra = Button(tela3, text="Pedra", width=20, command=lambda: jogar("Pedra"))
+    pedra = Button(tela3, text="Pedra", width=20, command=jogarPedra)
     pedra.place(x= 50 , y = 275)
-    papel = Button(tela3, text="Papel", width=20, command=lambda: jogar("Papel"))
+    papel = Button(tela3, text="Papel", width=20, command= jogarPapel)
     papel.place( x = 200 , y = 275)
-    tesoura = Button(tela3, text="Tesoura", width=20, command=lambda: jogar("Tesoura"))
+    tesoura = Button(tela3, text="Tesoura", width=20, command= jogarTesoura)
     tesoura.place( x= 350 , y = 275)
 
 
@@ -261,14 +276,14 @@ def ParouImpar():
     entrada_numero = tk.Entry(tela4)
     entrada_numero.place(x=200, y=150, width=150, height=30)
 
-    escolha_var = tk.StringVar(value="Par")
-    rb_par = tk.Radiobutton(tela4, text="Par", variable=escolha_var, value="Par")
+    escolha_var = StringVar(value="Par")
+    rb_par = Radiobutton(tela4, text="Par", variable=escolha_var, value="Par")
     rb_par.place(x=200, y=200)
-    rb_impar = tk.Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar")
+    rb_impar = Radiobutton(tela4, text="Ímpar", variable=escolha_var, value="Ímpar")
     rb_impar.place(x=275, y=200)
 
 
-    btn_jogar = tk.Button(tela4, text="Jogar", command=jogar)
+    btn_jogar = Button(tela4, text="Jogar", command=jogar)
     btn_jogar.place(x=200, y=240, width=150, height=30)
 
 
