@@ -164,7 +164,7 @@ def determinar_vencedor(jogador, computador):
         return "Computador venceu!"
 
 
-# Função para o clique do botão
+
 def jogarTesoura():
 
     escolha_computador = random.choice(["Pedra", "Papel", "Tesoura"])
