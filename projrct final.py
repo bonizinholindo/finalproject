@@ -147,10 +147,9 @@ def passar():
 lbl1 = Label(tela1, text='Minijogos', font="Times 12 ")
 bt1 = Button(tela1, text='Blackjack', command=blackjack)
 bt1.place(width=150 , height=50 , x=325 , y= 350)
-#botões
 
 
-# cor
+
 
 #PEDRAPAPELOUTESOURA
 def determinar_vencedor(jogador, computador):
